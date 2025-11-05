@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rithik ❤️ Samiksha</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  body{
+    margin:0;
+    overflow:hidden;
+    background:radial-gradient(circle at top left,#ffafbd,#ffc3a0);
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    color:white;
+    text-align:center;
+  }
+  h1{
+    font-size:3rem;
+    margin:0;
+    animation:glow 2s ease-in-out infinite alternate;
+  }
+  h2{
+    margin-top:10px;
+    font-weight:400;
+    font-size:1.3rem;
+    color:#fff6f6;
+  }
+  p{
+    max-width:600px;
+    margin:20px auto 0;
+    font-size:1rem;
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:10px;
+    backdrop-filter:blur(5px);
+  }
+  @keyframes glow {
+    from {text-shadow:0 0 10px #fff,0 0 20px #ff9a9e,0 0 30px #ff6b81;}
+    to {text-shadow:0 0 20px #fff,0 0 30px #ff4d6d,0 0 40px #ff1744;}
+  }
+  .heart{
+    position:absolute;
+    width:20px;height:20px;
+    background:red;
+    transform:rotate(45deg);
+    animation:fall 6s linear infinite;
+  }
+  .heart::before,.heart::after{
+    content:'';
+    position:absolute;
+    width:20px;height:20px;
+    background:red;
+    border-radius:50%;
+  }
+  .heart::before{top:-10px;left:0;}
+  .heart::after{left:-10px;top:0;}
+  @keyframes fall{
+    0%{transform:translateY(-10vh) rotate(45deg) scale(0.8);opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(110vh) rotate(45deg) scale(1.3);opacity:0;}
+  }
+  #musicBtn{
+    margin-top:25px;
+    background:#ff4d6d;
+    border:none;
+    color:white;
+    padding:10px 18px;
+    border-radius:10px;
+    font-size:1rem;
+    cursor:pointer;
+    box-shadow:0 0 15px rgba(255,77,109,0.6);
+    transition:all 0.3s;
+  }
+  #musicBtn:hover{background:#ff7b89;}
+</style>
+</head>
+<body>
+  <h1>💖 Sorry Samiksha 💖</h1>
+  <h2>From Rithik — With Endless Love</h2>
+  <p>
+    Samiksha, मैं जानता हूँ मैंने गलती की, पर मेरा दिल हमेशा तुम्हारे लिए ही धड़कता है।  
+    तुम्हारे बिना ये दुनिया अधूरी लगती है।  
+    Please माफ कर दो, क्योंकि <b>I Love You Forever</b> ❤️
+  </p>
+
+  <button id="musicBtn">🎵 Romantic Song चलाओ</button>
+  <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/10/19/audio_5ff5e4b18d.mp3?filename=romantic-background-music-12289.mp3" loop></audio>
+
+<script>
+const colors=["#ff4d6d","#ff758f","#ffa6c9","#ffc1cc"];
+const createHeart=()=>{
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  document.body.appendChild(heart);
+  const size=Math.random()*10+10;
+  heart.style.width=size+"px";
+  heart.style.height=size+"px";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.background=colors[Math.floor(Math.random()*colors.length)];
+  heart.style.animationDuration=(Math.random()*3+4)+"s";
+  setTimeout(()=>heart.remove(),7000);
+};
+setInterval(createHeart,300);
+
+const music=document.getElementById("bgMusic");
+document.getElementById("musicBtn").addEventListener("click",()=>{
+  if(music.paused){
+    music.play().then(()=>{
+      document.getElementById("musicBtn").textContent="⏸️ Music बंद करो";
+    }).catch(()=>alert("ब्राउज़र ऑटो-प्ले रोक रहा है — कृपया मैन्युअली अनुमति दें 🎶"));
+  }else{
+    music.pause();
+    document.getElementById("musicBtn").textContent="🎵 Romantic Song चलाओ";
+  }
+});
+</script>
+</body>
+</html>
